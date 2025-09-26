@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GULF Component Catalog",
+  "description": "A schema that defines a catalog of GULF components. Each key is a component name, and each value is the JSON schema for that component's properties.",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "https://json-schema.org/draft/2020-12/schema"
+  }
+}
