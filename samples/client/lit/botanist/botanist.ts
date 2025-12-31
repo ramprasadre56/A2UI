@@ -40,19 +40,19 @@ registerBotanistComponents();
 @customElement("a2ui-botanist")
 export class A2UIBotanist extends SignalWatcher(LitElement) {
   @provide({ context: UI.Context.themeContext })
-  theme: v0_8.Types.Theme = uiTheme;
+  accessor theme: v0_8.Types.Theme = uiTheme;
 
   @state()
-  private _requesting = false;
+  accessor _requesting = false;
 
   @state()
-  private _error: string | null = null;
+  accessor _error: string | null = null;
 
   @state()
-  private _lastMessages: v0_8.Types.ServerToClientMessage[] = [];
+  accessor _lastMessages: v0_8.Types.ServerToClientMessage[] = [];
 
   @state()
-  private _searchQuery = "";
+  accessor _searchQuery = "";
 
   private _processor = v0_8.Data.createSignalA2uiMessageProcessor();
   private _a2uiClient = new A2UIClient();
@@ -271,6 +271,99 @@ export class A2UIBotanist extends SignalWatcher(LitElement) {
         to {
           rotate: 360deg;
         }
+      }
+
+      /* A2UI Card Styling */
+      a2ui-card {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.15);
+        overflow: hidden;
+        margin-bottom: 16px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      a2ui-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(46, 125, 50, 0.2);
+      }
+
+      /* A2UI Row inside Card - make it a proper card layout */
+      a2ui-card a2ui-row {
+        display: grid;
+        grid-template-columns: 150px 1fr auto;
+        gap: 16px;
+        align-items: center;
+        padding: 12px;
+      }
+
+      /* A2UI Image inside Card */
+      a2ui-card a2ui-image {
+        width: 150px;
+        height: 120px;
+        border-radius: 12px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      a2ui-card a2ui-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* A2UI Column inside Card - details section */
+      a2ui-card a2ui-column {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+      }
+
+      /* Text styling in cards */
+      a2ui-card a2ui-text {
+        display: block;
+      }
+
+      a2ui-card a2ui-text[usagehint="h3"],
+      a2ui-card a2ui-text:first-child {
+        font-weight: 600;
+        color: #1b5e20;
+        font-size: 16px;
+      }
+
+      a2ui-card a2ui-text[style*="italic"] {
+        font-style: italic;
+        color: #558b2f;
+        font-size: 14px;
+      }
+
+      /* A2UI Button styling */
+      a2ui-card a2ui-button {
+        flex-shrink: 0;
+      }
+
+      a2ui-card a2ui-button button {
+        background: var(--p-30, #2e7d32);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      a2ui-card a2ui-button button:hover {
+        background: var(--p-20, #1b5e20);
+      }
+
+      /* A2UI List styling */
+      a2ui-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
       }
     `,
   ];

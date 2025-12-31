@@ -22,10 +22,10 @@ import { customElement, property } from "lit/decorators.js";
  */
 @customElement("botanist-breathability-badge")
 export class BreathabilityBadge extends LitElement {
-    @property({ type: Number })
-    score = 0;
+  @property({ type: Number })
+  accessor score = 0;
 
-    static styles = css`
+  static styles = css`
     :host {
       display: inline-flex;
     }
@@ -58,15 +58,15 @@ export class BreathabilityBadge extends LitElement {
     }
   `;
 
-    render() {
-        const level = this.score > 80 ? "high" : this.score > 50 ? "medium" : "low";
-        return html`
+  render() {
+    const level = this.score > 80 ? "high" : this.score > 50 ? "medium" : "low";
+    return html`
       <div class="badge ${level}">
         <span class="g-icon material-symbols-outlined">air</span>
         <span>${this.score}%</span>
       </div>
     `;
-    }
+  }
 }
 
 /**
@@ -74,22 +74,25 @@ export class BreathabilityBadge extends LitElement {
  */
 @customElement("botanist-plant-card")
 export class BotanistPlantCard extends LitElement {
-    @property({ type: String })
-    commonName = "";
+  @property({ type: String })
+  accessor commonName = "";
 
-    @property({ type: String })
-    scientificName = "";
+  @property({ type: String })
+  accessor scientificName = "";
 
-    @property({ type: String })
-    category = "";
+  @property({ type: String })
+  accessor category = "";
 
-    @property({ type: String })
-    imageUrl = "";
+  @property({ type: String })
+  accessor imageUrl = "";
 
-    @property({ type: Number })
-    breathabilityScore = 0;
+  @property({ type: Number })
+  accessor breathabilityScore = 0;
 
-    static styles = css`
+  // Track if image failed to load
+  private _imageError = false;
+
+  static styles = css`
     :host {
       display: block;
     }
@@ -168,42 +171,58 @@ export class BotanistPlantCard extends LitElement {
     }
   `;
 
-    render() {
-        return html`
+  private _handleImageError() {
+    this._imageError = true;
+    this.requestUpdate();
+  }
+
+  private _renderImage() {
+    // Show placeholder if no imageUrl or if image failed to load
+    if (!this.imageUrl || this._imageError) {
+      return html`
+        <div class="image-placeholder">
+          <span class="g-icon material-symbols-outlined">local_florist</span>
+        </div>
+      `;
+    }
+
+    return html`<img 
+      src="${this.imageUrl}" 
+      alt="${this.commonName}"
+      @error=${this._handleImageError}
+    />`;
+  }
+
+  render() {
+    return html`
       <div class="card">
         <div class="image-container">
-          ${this.imageUrl
-                ? html`<img src="${this.imageUrl}" alt="${this.commonName}" />`
-                : html`
-                <div class="image-placeholder">
-                  <span class="g-icon material-symbols-outlined">local_florist</span>
-                </div>
-              `}
+          ${this._renderImage()}
         </div>
         <div class="content">
           <h3 class="common-name">${this.commonName || "Unknown Plant"}</h3>
           <p class="scientific-name">${this.scientificName || "Species unknown"}</p>
           ${this.category
-                ? html`
+        ? html`
                 <span class="category">
                   <span class="g-icon material-symbols-outlined">eco</span>
                   ${this.category}
                 </span>
               `
-                : ""}
+        : ""}
           ${this.breathabilityScore > 0
-                ? html`<botanist-breathability-badge score="${this.breathabilityScore}"></botanist-breathability-badge>`
-                : ""}
+        ? html`<botanist-breathability-badge score="${this.breathabilityScore}"></botanist-breathability-badge>`
+        : ""}
         </div>
       </div>
     `;
-    }
+  }
 }
 
 /**
  * Register all custom botanist components
  */
 export function registerBotanistComponents() {
-    // Components are auto-registered via @customElement decorator
-    console.log("🌱 Botanist custom components registered");
+  // Components are auto-registered via @customElement decorator
+  console.log("🌱 Botanist custom components registered");
 }

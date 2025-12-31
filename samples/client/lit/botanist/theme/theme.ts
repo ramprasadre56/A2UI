@@ -17,16 +17,54 @@
 import { v0_8 } from "@a2ui/lit";
 
 export const theme: v0_8.Types.Theme = {
+    additionalStyles: {
+        Card: {
+            "min-width": "100%",
+            "padding": "12px",
+            "background": "white",
+            "border-radius": "16px",
+            "box-shadow": "0 4px 12px rgba(46, 125, 50, 0.15)",
+            "margin-bottom": "12px"
+        },
+        Button: {
+            "--n-60": "var(--n-100)",
+        },
+        Image: {
+            "width": "140px",
+            "min-width": "140px",
+            "height": "100px",
+            "border-radius": "12px",
+            "overflow": "hidden",
+            "flex-shrink": "0"
+        },
+        Row: {
+            "gap": "16px"
+        },
+        Column: {
+            "gap": "4px"
+        }
+    },
     components: {
         AudioPlayer: {},
         Button: {
-            "botanist-button": true
+            "layout-pt-2": true,
+            "layout-pb-2": true,
+            "layout-pl-5": true,
+            "layout-pr-5": true,
+            "border-br-2": true,
+            "border-bw-0": true,
+            "border-bs-s": true,
+            "color-bgc-p30": true,
+            "color-c-n100": true,
+            "behavior-ho-70": true,
         },
         Card: {
-            "botanist-card": true
+            "border-br-4": true,
+            "color-bgc-n100": true,
+            "layout-p-3": true,
         },
         Column: {
-            "botanist-column": true
+            "layout-g-1": true,
         },
         CheckBox: {
             container: {},
@@ -39,10 +77,15 @@ export const theme: v0_8.Types.Theme = {
             label: {},
         },
         Divider: {
-            "botanist-divider": true
+            "color-bgc-n90": true,
+            "layout-mt-4": true,
+            "layout-mb-4": true,
         },
         Image: {
-            all: { "botanist-image": true },
+            all: {
+                "border-br-3": true,
+                "layout-el-cv": true,
+            },
             icon: {},
             avatar: {},
             smallFeature: {},
@@ -51,14 +94,25 @@ export const theme: v0_8.Types.Theme = {
             header: {},
         },
         Icon: {
-            "botanist-icon": true
+            "border-br-1": true,
+            "layout-p-2": true,
+            "color-bgc-n98": true,
+            "layout-dsp-flexhor": true,
+            "layout-al-c": true,
+            "layout-sp-c": true,
+            "color-c-p30": true,
         },
         List: {
-            "botanist-list": true
+            "layout-g-3": true,
+            "layout-p-0": true,
         },
         Modal: {
-            backdrop: {},
-            element: {},
+            backdrop: { "color-bbgc-p60_20": true },
+            element: {
+                "border-br-2": true,
+                "color-bgc-p100": true,
+                "layout-p-4": true,
+            },
         },
         MultipleChoice: {
             container: {},
@@ -66,7 +120,8 @@ export const theme: v0_8.Types.Theme = {
             label: {},
         },
         Row: {
-            "botanist-row": true
+            "layout-g-4": true,
+            "layout-al-c": true,
         },
         Slider: {
             container: {},
@@ -82,14 +137,64 @@ export const theme: v0_8.Types.Theme = {
             },
         },
         Text: {
-            all: { "botanist-text": true },
-            h1: { "botanist-h1": true },
-            h2: { "botanist-h2": true },
-            h3: { "botanist-h3": true },
-            h4: { "botanist-h4": true },
-            h5: { "botanist-h5": true },
-            caption: { "botanist-caption": true },
-            body: { "botanist-body": true },
+            all: {
+                "layout-w-100": true,
+                "color-c-p30": true,
+            },
+            h1: {
+                "typography-f-sf": true,
+                "typography-v-r": true,
+                "typography-w-600": true,
+                "layout-m-0": true,
+                "layout-p-0": true,
+                "typography-sz-tl": true,
+                "color-c-p20": true,
+            },
+            h2: {
+                "typography-f-sf": true,
+                "typography-v-r": true,
+                "typography-w-500": true,
+                "layout-m-0": true,
+                "layout-p-0": true,
+                "typography-sz-tm": true,
+                "color-c-p25": true,
+            },
+            h3: {
+                "typography-f-sf": true,
+                "typography-v-r": true,
+                "typography-w-600": true,
+                "layout-m-0": true,
+                "layout-p-0": true,
+                "typography-sz-ts": true,
+                "color-c-p20": true,
+            },
+            h4: {
+                "typography-f-sf": true,
+                "typography-v-r": true,
+                "typography-w-500": true,
+                "layout-m-0": true,
+                "layout-p-0": true,
+                "typography-sz-bl": true,
+            },
+            h5: {
+                "typography-f-sf": true,
+                "typography-v-r": true,
+                "typography-w-400": true,
+                "layout-m-0": true,
+                "layout-p-0": true,
+                "typography-sz-bm": true,
+                "color-c-n40": true,
+            },
+            caption: {},
+            body: {
+                "typography-f-sf": true,
+                "typography-v-r": true,
+                "typography-w-400": true,
+                "layout-m-0": true,
+                "layout-p-0": true,
+                "typography-sz-bm": true,
+                "color-c-n30": true,
+            },
         },
         TextField: {
             container: {},
@@ -129,28 +234,4 @@ export const theme: v0_8.Types.Theme = {
         strong: [],
         em: [],
     },
-    additionalStyles: {
-        Text: {
-            body: {
-                "font-family": "Nunito, sans-serif",
-                "color": "#1B5E20"
-            },
-            h1: {
-                "font-family": "Nunito, sans-serif",
-                "color": "#2E7D32",
-                "font-weight": "700"
-            },
-            h2: {},
-            h3: {},
-            h4: {},
-            h5: {},
-            caption: {}
-        },
-        Card: {
-            "background": "#FFFFFF",
-            "border-radius": "16px",
-            "box-shadow": "0 4px 12px rgba(46, 125, 50, 0.15)",
-            "border": "1px solid rgba(46, 125, 50, 0.1)"
-        }
-    }
 };
