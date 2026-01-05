@@ -133,7 +133,7 @@ def main(host, port):
         catalogue_dir = ASSETS_DIR / "heartyculture_catalogue"
         if catalogue_dir.exists():
             app.mount(
-                "/static/heartyculture_catalogue",
+                "/heartyculture_catalogue",
                 StaticFiles(directory=str(catalogue_dir)),
                 name="catalogue",
             )
